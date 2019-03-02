@@ -48,6 +48,7 @@ class Practice extends Component {
       );
     }
   }
+  
 }
 
 export default Practice;

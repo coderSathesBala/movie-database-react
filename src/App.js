@@ -3,14 +3,14 @@ import './App.css';
 import Navbar from './Navbar.js'
 import Home from './Home.js'
 import Practice from './Practice.js'
+import Together from './Together.js'
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Navbar />
-        <Home />
-        <Practice />
+        <Together />
+
         <header className="App-header">
 
           <a

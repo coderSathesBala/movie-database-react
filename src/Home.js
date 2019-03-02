@@ -21,6 +21,7 @@ class Home extends Component {
             isLoaded: true,
             items: result.genres
           });
+          console.log(result.genres)
         },
         (error) => {
           this.setState({
@@ -39,6 +40,7 @@ class Home extends Component {
       return <div>Loading...</div>;
     } else {
       return (
+
         <ul>
           {items.map(item => (
             <li> {item.name} </li>
