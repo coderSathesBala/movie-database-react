@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import './App.css';
 import Navbar from './Navbar.js'
-import Home from './Home.js'
+import Genre from './Genre.js'
 import Practice from './Practice.js'
 import Together from './Together.js'
+import GetItTogether from './GetItTogether.js'
+import MovieClick from './MovieClick.js'
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Together />
+        <GetItTogether/>
+        <MovieClick/>
 
         <header className="App-header">
 

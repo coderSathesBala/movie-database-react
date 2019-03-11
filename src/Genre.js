@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import './Home.css';
+import './Genre.css';
 
-class Home extends Component {
+class Genre extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
       error: null,
       isLoaded: false,
-      items: []
+      genreInfos: []
     };
   }
 
@@ -19,9 +19,10 @@ class Home extends Component {
         (result) => {
           this.setState({
             isLoaded: true,
-            items: result.genres
+            genreInfos: result.genres
           });
-          console.log(result.genres)
+          console.log(result.genres.id)
+          const reminder = result.genres
         },
         (error) => {
           this.setState({
@@ -33,7 +34,7 @@ class Home extends Component {
   }
 
   render() {
-    const { error, isLoaded, items } = this.state;
+    const { error, isLoaded, genreInfos } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
@@ -42,8 +43,8 @@ class Home extends Component {
       return (
 
         <ul>
-          {items.map(item => (
-            <li> {item.name} </li>
+          {genreInfos.map(genreInfo => (
+            <li> {genreInfo.id} </li>
           ))}
         </ul>
       );
@@ -51,4 +52,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default Genre;
