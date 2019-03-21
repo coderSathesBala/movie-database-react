@@ -39,7 +39,8 @@ getDocumentaryMovies = () => {
   .then((picturesRes) => {
           this.setState({
           isLoaded: true,
-          documentaryMovies: picturesRes.data.results
+          documentaryMovies: picturesRes.data.results,
+          height: 300
           })
   })
 }
@@ -124,6 +125,12 @@ getRomanceMovies = () => {
   })
 }
 
+onItemClick = (changeSize) => {
+  changeSize.currentTarget.height = "500"
+  changeSize.currentTarget.width = "350"
+
+}
+
 render() {
   const { error, isLoaded, documentaryMovies,
       actionMovies,
@@ -140,24 +147,29 @@ render() {
     return <div>Loading...</div>;
   } else {
     return (
-      <div>
-        <ul>
-        <h1>Documentaries</h1>
+        <div className="everything">
+        <h1 className="genreTitle">Documentaries</h1>
+        <div className="movieImagesWhole">
         {documentaryMovies.map(documentaryMovie => (
-          <li className="listOfMovies" name={documentaryMovie.original_title}
-                                       image={posterurl + documentaryMovie.poster_path}
-                                       description={documentaryMovie.overview}
-                                       >
-          <img src={posterurl + documentaryMovie.poster_path} height="300"/></li>
-        ))}
-        </ul>
-        <ul>
-        <h1>Action</h1>
-        {actionMovies.map(actionMovie => (
-          <li className="listOfMovies"><img src={posterurl + actionMovie.poster_path} /></li>
-        ))}
-      </ul>
-      <button>ok</button>
+          <div className="movieImages">
+          <img src={posterurl + documentaryMovie.poster_path} id={documentaryMovie.poster_path} height="300" width="200"
+          onMouseEnter={changeSize => (changeSize.currentTarget.height = "330") && (changeSize.currentTarget.width = "220")}
+          onMouseLeave={changeSize => (changeSize.currentTarget.height = "300") && (changeSize.currentTarget.width = "200")}
+          onClick={this.onItemClick}
+           />
+          </div>
+      ))}
+    </div>
+    <h1 className="genreTitle">Action</h1>
+    <div className="movieImagesWhole">
+    {actionMovies.map(actionMovie => (
+      <div className="movieImages">
+      <img src={posterurl + actionMovie.poster_path} id={actionMovie.poster_path} height="300"
+       onClick={this.onItemClick}
+       />
+      </div>
+  ))}
+</div>
       </div>
     );
   }

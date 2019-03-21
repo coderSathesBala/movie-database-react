@@ -12,7 +12,6 @@ class App extends Component {
     return (
       <div className="App">
         <GetItTogether/>
-        <MovieClick/>
 
         <header className="App-header">
 
