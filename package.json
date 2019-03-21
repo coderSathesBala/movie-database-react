@@ -7,7 +7,8 @@
     "jquery": "^3.3.1",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
-    "react-scripts": "2.1.5"
+    "react-scripts": "2.1.5",
+    "react-whirligig": "^6.5.12"
   },
   "scripts": {
     "start": "react-scripts start",

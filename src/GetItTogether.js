@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './GetItTogether.css'
+import Whirligig from 'react-whirligig'
 const posterurl = "http://image.tmdb.org/t/p/w185//";
 
 
@@ -128,10 +129,24 @@ getRomanceMovies = () => {
 onItemClick = (changeSize) => {
   changeSize.currentTarget.height = "500"
   changeSize.currentTarget.width = "350"
+}
 
+onMouseEnter = (changeSize) => {
+  changeSize.currentTarget.height = "330"
+  changeSize.currentTarget.width = "220"
+}
+
+onMouseLeave = (changeSize) => {
+  changeSize.currentTarget.height = "300"
+  changeSize.currentTarget.width = "200"
 }
 
 render() {
+  const Slider = () => {
+    let whirligig
+    const next = () => whirligig.next()
+    const prev = () => whirligig.prev()
+  }
   const { error, isLoaded, documentaryMovies,
       actionMovies,
       animationMovies,
@@ -149,27 +164,36 @@ render() {
     return (
         <div className="everything">
         <h1 className="genreTitle">Documentaries</h1>
+        <Whirligig>
         <div className="movieImagesWhole">
         {documentaryMovies.map(documentaryMovie => (
           <div className="movieImages">
           <img src={posterurl + documentaryMovie.poster_path} id={documentaryMovie.poster_path} height="300" width="200"
-          onMouseEnter={changeSize => (changeSize.currentTarget.height = "330") && (changeSize.currentTarget.width = "220")}
-          onMouseLeave={changeSize => (changeSize.currentTarget.height = "300") && (changeSize.currentTarget.width = "200")}
           onClick={this.onItemClick}
+          onMouseEnter={this.onMouseEnter}
+          onMouseLeave={this.onMouseLeave}
            />
           </div>
       ))}
     </div>
+    </Whirligig>
     <h1 className="genreTitle">Action</h1>
-    <div className="movieImagesWhole">
+<Whirligig>
+  <div className="movieImagesWhole">
     {actionMovies.map(actionMovie => (
       <div className="movieImages">
-      <img src={posterurl + actionMovie.poster_path} id={actionMovie.poster_path} height="300"
-       onClick={this.onItemClick}
-       />
+        <img src={posterurl + actionMovie.poster_path} id={actionMovie.poster_path} height="300"
+          onClick={this.onItemClick}
+          onMouseEnter={this.onMouseEnter}
+          onMouseLeave={this.onMouseLeave}
+          />
       </div>
-  ))}
-</div>
+    ))}
+  </div>
+</Whirligig>
+
+
+
       </div>
     );
   }
