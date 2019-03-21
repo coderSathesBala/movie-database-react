@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './GetItTogether.css'
 import Whirligig from 'react-whirligig'
+import { css } from 'glamor'
 const posterurl = "http://image.tmdb.org/t/p/w185//";
 
 
@@ -41,7 +42,7 @@ getDocumentaryMovies = () => {
           this.setState({
           isLoaded: true,
           documentaryMovies: picturesRes.data.results,
-          height: 300
+          show:
           })
   })
 }
@@ -129,6 +130,7 @@ getRomanceMovies = () => {
 onItemClick = (changeSize) => {
   changeSize.currentTarget.height = "500"
   changeSize.currentTarget.width = "350"
+  console.log(changeSize.target.id);
 }
 
 onMouseEnter = (changeSize) => {
@@ -139,8 +141,12 @@ onMouseEnter = (changeSize) => {
 onMouseLeave = (changeSize) => {
   changeSize.currentTarget.height = "300"
   changeSize.currentTarget.width = "200"
+
 }
 
+test = () => {
+
+}
 render() {
   const Slider = () => {
     let whirligig
@@ -168,8 +174,8 @@ render() {
         <div className="movieImagesWhole">
         {documentaryMovies.map(documentaryMovie => (
           <div className="movieImages">
-          <img src={posterurl + documentaryMovie.poster_path} id={documentaryMovie.poster_path} height="300" width="200"
-          onClick={this.onItemClick}
+          <img src={posterurl + documentaryMovie.poster_path} id={documentaryMovie.original_title} height="300" width="200"
+          onClick={this.onClickImageSize}
           onMouseEnter={this.onMouseEnter}
           onMouseLeave={this.onMouseLeave}
            />
@@ -183,7 +189,7 @@ render() {
     {actionMovies.map(actionMovie => (
       <div className="movieImages">
         <img src={posterurl + actionMovie.poster_path} id={actionMovie.poster_path} height="300"
-          onClick={this.onItemClick}
+          onClick={this.test}
           onMouseEnter={this.onMouseEnter}
           onMouseLeave={this.onMouseLeave}
           />
