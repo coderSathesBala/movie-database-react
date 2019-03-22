@@ -18,7 +18,8 @@ code {
 .movieImagesWhole {
   padding-left: 20px;
   display: grid;
-  grid-template-columns: repeat(20, auto);
+  grid-template-columns: repeat(20, 220px);
+  grid-column-gap: 0.5em;
 }
 
 .genreTitle {
@@ -26,6 +27,6 @@ code {
   padding-left: 20px;
 }
 
-.testing {
-  position: absolute;
+.change {
+  z-index:99999;
 }
