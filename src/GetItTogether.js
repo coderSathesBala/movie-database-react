@@ -170,8 +170,7 @@ render() {
   <div className="movieImagesWhole">
     {actionMovies.map(actionMovie => (
       <div className="movieImages">
-        <img src={posterurl + actionMovie.poster_path} id={actionMovie.poster_path} height="300"
-          />
+        <img src={posterurl + actionMovie.poster_path} id={actionMovie.poster_path} height="300" />
         <div className="change" id={actionMovie.title}>
         <p>{actionMovie.title}</p>
         <p>{actionMovie.overview}</p>
