@@ -11,7 +11,7 @@ constructor(props) {
   this.state = {
     error: null,
     isLoaded: false,
-    documentaryMovies:[]  ,
+    documentaryMovies:[],
     actionMovies: [],
     animationMovies: [],
     comedyMovies: [],
@@ -24,111 +24,41 @@ constructor(props) {
 }
 
 componentDidMount() {
-  this.getDocumentaryMovies();
-  this.getActionMovies();
-  this.getAnimationMovies();
-  this.getComedyMovies();
-  this.getCrimeMovies();
-  this.getDramaMovies();
-  this.getFamilyMovies();
-  this.getHistoryMovies();
-  this.getRomanceMovies();
+  this.getMovieInformation();
 }
 
-getDocumentaryMovies = () => {
-  axios.get('https://api.themoviedb.org/3/discover/movie?api_key=04933c26041758065df384adb2cc7541&with_genres=99')
-  .then((picturesRes) => {
-          this.setState({
-          isLoaded: true,
-          documentaryMovies: picturesRes.data.results
-          })
-  })
-}
-
-getActionMovies = () => {
-  axios.get('https://api.themoviedb.org/3/discover/movie?api_key=04933c26041758065df384adb2cc7541&with_genres=28')
-  .then((picturesRes) => {
-          this.setState({
-          isLoaded: true,
-          actionMovies: picturesRes.data.results
-          })
-  })
-}
-
-getAnimationMovies = () => {
-  axios.get('https://api.themoviedb.org/3/discover/movie?api_key=04933c26041758065df384adb2cc7541&with_genres=16')
-  .then((picturesRes) => {
-          this.setState({
-          isLoaded: true,
-          animationMovies: picturesRes.data.results
-          })
-  })
-}
-
-getComedyMovies = () => {
-  axios.get('https://api.themoviedb.org/3/discover/movie?api_key=04933c26041758065df384adb2cc7541&with_genres=35')
-  .then((picturesRes) => {
-          this.setState({
-          isLoaded: true,
-          comedyMovies: picturesRes.data.results
-          })
-  })
-}
-
-getCrimeMovies = () => {
-  axios.get('https://api.themoviedb.org/3/discover/movie?api_key=04933c26041758065df384adb2cc7541&with_genres=80')
-  .then((picturesRes) => {
-          this.setState({
-          isLoaded: true,
-          crimeMovies: picturesRes.data.results
-          })
-  })
-}
-
-getDramaMovies = () => {
-  axios.get('https://api.themoviedb.org/3/discover/movie?api_key=04933c26041758065df384adb2cc7541&with_genres=18')
-  .then((picturesRes) => {
-          this.setState({
-          isLoaded: true,
-          dramaMovies: picturesRes.data.results
-          })
-  })
-}
-
-getFamilyMovies = () => {
-  axios.get('https://api.themoviedb.org/3/discover/movie?api_key=04933c26041758065df384adb2cc7541&with_genres=10751')
-  .then((picturesRes) => {
-          this.setState({
-          isLoaded: true,
-          familyMovies: picturesRes.data.results
-          })
-  })
-}
-
-getHistoryMovies = () => {
-  axios.get('https://api.themoviedb.org/3/discover/movie?api_key=04933c26041758065df384adb2cc7541&with_genres=36')
-  .then((picturesRes) => {
-          this.setState({
-          isLoaded: true,
-          historyMovies: picturesRes.data.results
-          })
-  })
-}
-
-getRomanceMovies = () => {
+getMovieInformation = () => {
+  axios.all([
+  axios.get('https://api.themoviedb.org/3/discover/movie?api_key=04933c26041758065df384adb2cc7541&with_genres=99'),
+  axios.get('https://api.themoviedb.org/3/discover/movie?api_key=04933c26041758065df384adb2cc7541&with_genres=16'),
+  axios.get('https://api.themoviedb.org/3/discover/movie?api_key=04933c26041758065df384adb2cc7541&with_genres=16'),
+  axios.get('https://api.themoviedb.org/3/discover/movie?api_key=04933c26041758065df384adb2cc7541&with_genres=35'),
+  axios.get('https://api.themoviedb.org/3/discover/movie?api_key=04933c26041758065df384adb2cc7541&with_genres=80'),
+  axios.get('https://api.themoviedb.org/3/discover/movie?api_key=04933c26041758065df384adb2cc7541&with_genres=18'),
+  axios.get('https://api.themoviedb.org/3/discover/movie?api_key=04933c26041758065df384adb2cc7541&with_genres=10751'),
+  axios.get('https://api.themoviedb.org/3/discover/movie?api_key=04933c26041758065df384adb2cc7541&with_genres=36'),
   axios.get('https://api.themoviedb.org/3/discover/movie?api_key=04933c26041758065df384adb2cc7541&with_genres=10749')
-  .then((picturesRes) => {
-          this.setState({
+  ])
+  .then(axios.spread(
+    (documentaryRes, actionRes, animationRes, comedyRes, crimeRes, dramaRes, familyRes, historyRes, romanceRes) => {
+    this.setState({
           isLoaded: true,
-          romanceMovies: picturesRes.data.results
+          documentaryMovies: documentaryRes.data.results,
+          actionMovies: actionRes.data.results,
+          animationMovies: animationRes.data.results,
+          comedyMovies: comedyRes.data.results,
+          crimeMovies: crimeRes.data.results,
+          dramaMovies: dramaRes.data.results,
+          familyMovies: familyRes.data.results,
+          historyMovies: historyRes.data.results,
+          romanceMovies: romanceRes.data.results
           })
-  })
+  }));
 }
 
 onItemClick = (changeSize) => {
   changeSize.currentTarget.height = "500"
   changeSize.currentTarget.width = "350"
-  console.log(changeSize.target.id);
 }
 
 onMouseEnter = (changeSize) => {
@@ -143,6 +73,8 @@ onMouseLeave = (changeSize) => {
 }
 
 render() {
+  const updateInformation = e => {
+}
   const Slider = () => {
     let whirligig
     const next = () => whirligig.next()
@@ -165,20 +97,20 @@ render() {
     return (
         <div className="everything">
 
-    <h1 className="genreTitle">Action</h1>
-<Whirligig>
-  <div className="movieImagesWhole">
-    {actionMovies.map(actionMovie => (
-      <div className="movieImages">
-        <img src={posterurl + actionMovie.poster_path} id={actionMovie.poster_path} height="300" />
-        <div className="change" id={actionMovie.title}>
-        <p>{actionMovie.title}</p>
-        <p>{actionMovie.overview}</p>
-        </div>
-      </div>
-    ))}
-  </div>
-</Whirligig>
+          <h1 className="genreTitle">Action</h1>
+          <Whirligig>
+            <div className="movieImagesWhole">
+              {actionMovies.map(actionMovie => (
+                <div className="movieImages">
+                  <img src={posterurl + actionMovie.poster_path} id={actionMovie.poster_path} height="300"  onClick={updateInformation} />
+                  <div className="change" id={actionMovie.title}>
+                  <p>{actionMovie.title}</p>
+                  <p>{actionMovie.overview}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Whirligig>
 
   <h1 className="genreTitle">Crime</h1>
 <Whirligig>
