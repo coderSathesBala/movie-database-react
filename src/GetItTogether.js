@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './GetItTogether.css'
 import Whirligig from 'react-whirligig'
+import MovieDisplay from './MovieDisplay.js'
 const posterurl = "http://image.tmdb.org/t/p/w185//";
+const api_key = "04933c26041758065df384adb2cc7541"
 
 
 class GetItTogether extends Component {
@@ -27,17 +29,17 @@ componentDidMount() {
   this.getMovieInformation();
 }
 
-getMovieInformation = () => {
-  axios.all([
-  axios.get('https://api.themoviedb.org/3/discover/movie?api_key=04933c26041758065df384adb2cc7541&with_genres=99'),
-  axios.get('https://api.themoviedb.org/3/discover/movie?api_key=04933c26041758065df384adb2cc7541&with_genres=16'),
-  axios.get('https://api.themoviedb.org/3/discover/movie?api_key=04933c26041758065df384adb2cc7541&with_genres=16'),
-  axios.get('https://api.themoviedb.org/3/discover/movie?api_key=04933c26041758065df384adb2cc7541&with_genres=35'),
-  axios.get('https://api.themoviedb.org/3/discover/movie?api_key=04933c26041758065df384adb2cc7541&with_genres=80'),
-  axios.get('https://api.themoviedb.org/3/discover/movie?api_key=04933c26041758065df384adb2cc7541&with_genres=18'),
-  axios.get('https://api.themoviedb.org/3/discover/movie?api_key=04933c26041758065df384adb2cc7541&with_genres=10751'),
-  axios.get('https://api.themoviedb.org/3/discover/movie?api_key=04933c26041758065df384adb2cc7541&with_genres=36'),
-  axios.get('https://api.themoviedb.org/3/discover/movie?api_key=04933c26041758065df384adb2cc7541&with_genres=10749')
+async getMovieInformation() {
+  await axios.all([
+  axios.get('https://api.themoviedb.org/3/discover/movie?api_key=' + api_key + '&with_genres=99'),
+  axios.get('https://api.themoviedb.org/3/discover/movie?api_key=' + api_key + '&with_genres=28'),
+  axios.get('https://api.themoviedb.org/3/discover/movie?api_key=' + api_key + '&with_genres=16'),
+  axios.get('https://api.themoviedb.org/3/discover/movie?api_key=' + api_key + '&with_genres=35'),
+  axios.get('https://api.themoviedb.org/3/discover/movie?api_key=' + api_key + '&with_genres=80'),
+  axios.get('https://api.themoviedb.org/3/discover/movie?api_key=' + api_key + '&with_genres=18'),
+  axios.get('https://api.themoviedb.org/3/discover/movie?api_key=' + api_key + '&with_genres=10751'),
+  axios.get('https://api.themoviedb.org/3/discover/movie?api_key=' + api_key + '&with_genres=36'),
+  axios.get('https://api.themoviedb.org/3/discover/movie?api_key=' + api_key + '&with_genres=10749')
   ])
   .then(axios.spread(
     (documentaryRes, actionRes, animationRes, comedyRes, crimeRes, dramaRes, familyRes, historyRes, romanceRes) => {
@@ -79,6 +81,13 @@ render() {
   } else {
     return (
         <div className="everything">
+
+          <MovieDisplay
+            allMovies={actionMovies}
+             />
+           <MovieDisplay
+             allMovies={crimeMovies}
+             />
 
           <h1 className="genreTitle">Action</h1>
           <Whirligig>
