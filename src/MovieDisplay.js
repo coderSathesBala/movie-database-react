@@ -8,7 +8,7 @@ const api_key = "04933c26041758065df384adb2cc7541"
 const MovieDisplay = ({allMovies, title}) => {
   return(
     <div>
-    <h1 className="genreTitle">Action</h1>
+    <h1 className="genreTitle">{title}</h1>
     <Whirligig>
       <div className="movieImagesWhole">
         {allMovies.map(actionMovie => (
