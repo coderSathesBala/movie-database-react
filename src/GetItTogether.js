@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './GetItTogether.css'
-import Whirligig from 'react-whirligig'
 import MovieDisplay from './MovieDisplay.js'
-const posterurl = "http://image.tmdb.org/t/p/w185//";
 const api_key = "04933c26041758065df384adb2cc7541"
 
 
@@ -66,11 +64,6 @@ render() {
                     this.state.family, this.state.history, this.state.romance]
   const movieTitles = ["Documentary", "Action", "Animation", "Comedy", "Crime", "Drama", "Family", "History", "Romance"]
   const questionsMap = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-  const Slider = () => {
-    let whirligig
-    const next = () => whirligig.next()
-    const prev = () => whirligig.prev()
-  }
   const { error, isLoaded } = this.state;
   if (error) {
     return <div>Error: {error.message}</div>;

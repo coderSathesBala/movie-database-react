@@ -1,9 +1,7 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React from 'react';
 import './GetItTogether.css'
 import Whirligig from 'react-whirligig'
 const posterurl = "http://image.tmdb.org/t/p/w185//";
-const api_key = "04933c26041758065df384adb2cc7541"
 
 const MovieDisplay = ({allMovies, title}) => {
   return(
