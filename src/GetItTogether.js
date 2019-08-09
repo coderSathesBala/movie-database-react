@@ -7,6 +7,7 @@ const posterurl = "http://image.tmdb.org/t/p/w185//";
 const api_key = "04933c26041758065df384adb2cc7541"
 
 
+
 class GetItTogether extends Component {
 constructor(props) {
   super(props);
@@ -73,13 +74,14 @@ render() {
       dramaMovies,
       familyMovies,
       historyMovies,
-      romanceMovies } = this.state;
+      romanceMovies} = this.state;
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {
     return <div>Loading...</div>;
   } else {
     return (
+
         <div className="everything">
 
           <MovieDisplay
@@ -114,8 +116,7 @@ render() {
             allMovies={romanceMovies}
             title="Romance"
             />
-
-</div>
+        </div>
     );
   }
 }
