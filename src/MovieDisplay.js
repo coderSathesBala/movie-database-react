@@ -11,12 +11,12 @@ const MovieDisplay = ({allMovies, title}) => {
     <h1 className="genreTitle">{title}</h1>
     <Whirligig>
       <div className="movieImagesWhole">
-        {allMovies.map(actionMovie => (
+        {allMovies.map(action => (
           <div className="movieImages">
-            <img src={posterurl + actionMovie.poster_path} id={actionMovie.poster_path} height="300" />
-            <div className="change" id={actionMovie.title}>
-            <p>{actionMovie.title}</p>
-            <p>{actionMovie.overview}</p>
+            <img src={posterurl + action.poster_path} id={action.poster_path} height="300" />
+            <div className="change" id={action.title}>
+            <p>{action.title}</p>
+            <p>{action.overview}</p>
             </div>
           </div>
         ))}

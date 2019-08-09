@@ -14,15 +14,15 @@ constructor(props) {
   this.state = {
     error: null,
     isLoaded: false,
-    documentaryMovies:[],
-    actionMovies: [],
-    animationMovies: [],
-    comedyMovies: [],
-    crimeMovies: [],
-    dramaMovies: [],
-    familyMovies: [],
-    historyMovies: [],
-    romanceMovies: []
+    documentary:[],
+    action: [],
+    animation: [],
+    comedy: [],
+    crime: [],
+    drama: [],
+    family: [],
+    history: [],
+    romance: []
   };
 }
 
@@ -46,35 +46,32 @@ async getMovieInformation() {
     (documentaryRes, actionRes, animationRes, comedyRes, crimeRes, dramaRes, familyRes, historyRes, romanceRes) => {
     this.setState({
           isLoaded: true,
-          documentaryMovies: documentaryRes.data.results,
-          actionMovies: actionRes.data.results,
-          animationMovies: animationRes.data.results,
-          comedyMovies: comedyRes.data.results,
-          crimeMovies: crimeRes.data.results,
-          dramaMovies: dramaRes.data.results,
-          familyMovies: familyRes.data.results,
-          historyMovies: historyRes.data.results,
-          romanceMovies: romanceRes.data.results
+          documentary: documentaryRes.data.results,
+          action: actionRes.data.results,
+          animation: animationRes.data.results,
+          comedy: comedyRes.data.results,
+          crime: crimeRes.data.results,
+          drama: dramaRes.data.results,
+          family: familyRes.data.results,
+          history: historyRes.data.results,
+          romance: romanceRes.data.results
           })
   }));
 }
 
 
 render() {
+  const movieArr = [this.state.documentary, this.state.action, this.state.animation,
+                    this.state.comedy, this.state.crime, this.state.drama,
+                    this.state.family, this.state.history, this.state.romance]
+  const movieTitles = ["Documentary", "Action", "Animation", "Comedy", "Crime", "Drama", "Family", "History", "Romance"]
+  const questionsMap = [0, 1, 2, 3, 4, 5, 6, 7, 8];
   const Slider = () => {
     let whirligig
     const next = () => whirligig.next()
     const prev = () => whirligig.prev()
   }
-  const { error, isLoaded, documentaryMovies,
-      actionMovies,
-      animationMovies,
-      comedyMovies,
-      crimeMovies,
-      dramaMovies,
-      familyMovies,
-      historyMovies,
-      romanceMovies} = this.state;
+  const { error, isLoaded } = this.state;
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {
@@ -84,38 +81,10 @@ render() {
 
         <div className="everything">
 
-          <MovieDisplay
-            allMovies={actionMovies}
-            title="Action"
-             />
-          <MovieDisplay
-            allMovies={crimeMovies}
-            title="Crime"
-             />
-          <MovieDisplay
-            allMovies={animationMovies}
-            title="Animation"
-            />
-          <MovieDisplay
-            allMovies={comedyMovies}
-            title="Comedy"
-            />
-          <MovieDisplay
-            allMovies={documentaryMovies}
-            title="Documentary"
-            />
-          <MovieDisplay
-            allMovies={familyMovies}
-            title="Family"
-            />
-          <MovieDisplay
-            allMovies={historyMovies}
-            title="History"
-            />
-          <MovieDisplay
-            allMovies={romanceMovies}
-            title="Romance"
-            />
+          {questionsMap.map(i => {
+              return <MovieDisplay allMovies={movieArr[i]} title={movieTitles[i]} />
+            })}
+
         </div>
     );
   }
