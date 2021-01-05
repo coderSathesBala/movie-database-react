@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://sathesbitmaker.github.io/movie-database-react/",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "gh-pages": "^2.0.1",
     "glamor": "^2.20.40",
     "jquery": "^3.3.1",
