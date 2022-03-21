@@ -1,1 +1,3 @@
 A project built in March 2019 which grabs the current most popular movies of each genre from an API called The Movie DataBase. I built this project in order to put my React.js skills to use & be able to show future employers my React skills. After building this project I see why huge companies such as Facebook & Instagram use React. I understand componentDidMount, axios and React in general a lot more after finishing this project. The more I understand leads me to enjoy coding a lot more, I would love to dive more in to React in future projects and see all the cool stuff I can build!
+
+https://codersathesbala.github.io/movie-database-react/
